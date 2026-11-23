@@ -2,6 +2,17 @@
 
 All notable changes to the Duplicate image finder (formerly phash_dedupe) and the Image organizer, tracked in one numbered sequence. v3.0 introduced the Image organizer (`image_organizer.py`); entries before it belong to `duplicate_image_finder.py`. Older entries use the file names that were current at the time.
 
+## v3.1 - Folder-trained image classifier
+**Date:** 23-11-2026
+
+- Added `train_from_folders.py`, an example-based classifier that learns visual image prototypes from labeled folders. The immediate child folder under the training root becomes the category; deeper folders such as `Collection Bin` are treated as organization only.
+- Added `run_folder_trainer.bat` for Windows. `train` builds a reusable model folder with normalized CLIP embeddings, labels, source paths, a training manifest and a validation report. `classify` creates a CSV preview by default and sends low-confidence or close predictions to `Review`.
+- Classification is safe by default: no files are copied or moved unless `--apply` is supplied. With `--apply`, classified images are copied into category folders; source images remain unchanged.
+- Trained the initial showroom model from `Showroom Media (For everyone)`: 254 images across `Bajaj 3 Wheelers` (88), `Royal Enfield` (100) and `Tata Trucks` (66), with no unreadable images. The preliminary held-out validation was 48/50 (96%).
+- Documented the folder-trained workflow and commands in `README.md`.
+- Updated `run_image_organizer.bat` to anchor itself to its own folder, show startup status, avoid heavyweight ML imports during the dependency check and keep runtime errors visible when double-clicked.
+- Files Changed: `train_from_folders.py`, `run_folder_trainer.bat`, `run_image_organizer.bat`, `README.md`, `CHANGELOG.md`.
+
 ## v3.0 - Image organizer: sort by content, then remove duplicates, in one tool
 **Date:** 22-11-2026
 

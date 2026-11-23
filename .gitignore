@@ -1,0 +1,28 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+finder-env/
+
+# Trained models and classifier reports
+trained_models/
+
+# Local organizer output and run artifacts
+*_organized/
+*_dedupe_output/
+multi_*_folders_organized/
+organizer_preview.xlsx
+organizer_data.xlsx
+organizer_data_*.xlsx
+moves_log.csv
+moves_log_undone_*.csv
+profile_used.json
+
+# Local deployment marker
+.deploy_stamp
+
+# Local training media; keep the repository code-only
+Showroom Media (For everyone)/

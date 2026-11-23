@@ -74,6 +74,24 @@ Python 3.9+. The first run downloads the model once (roughly 600 MB). On Windows
 
 Menu: **1** organize, **2** edit a profile, **3** create a profile, **4** undo.
 
+### Folder-trained classifier
+
+If you already have correctly labeled image folders, the example-based classifier can learn visual prototypes from them. It uses the immediate child folder as the label and treats deeper folders as organization only. The source images are never changed during training.
+
+Train from a labeled root:
+
+```text
+python train_from_folders.py train "D:\Showroom Media (For everyone)" --output "trained_models\showroom"
+```
+
+Classify a new folder in preview mode:
+
+```text
+python train_from_folders.py classify "D:\new_images" --model-dir "trained_models\showroom"
+```
+
+The preview writes `classification_preview.csv` and creates no copies. Add `--apply` to copy classified images into category folders and a `Review` folder. The current model uses CLIP image embeddings and class prototypes; it is example-based learning, not full neural-network fine-tuning. `run_folder_trainer.bat` can be used instead of typing `py -3`.
+
 Command line:
 
 | Command | Effect |

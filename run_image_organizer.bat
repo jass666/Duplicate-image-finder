@@ -1,6 +1,14 @@
 @echo off
 setlocal EnableExtensions
 title Image organizer
+cd /d "%~dp0"
+if errorlevel 1 (
+    echo Could not switch to the launcher folder:
+    echo   %~dp0
+    echo.
+    pause
+    exit /b 1
+)
 
 rem ============================================================
 rem  Launcher for image_organizer.py (keep both files in one folder,
@@ -24,6 +32,8 @@ if not exist "%SCRIPT%" (
 chcp 65001 >nul
 set "PYTHONIOENCODING=utf-8"
 set "PYTHONUTF8=1"
+set "PYTHONUNBUFFERED=1"
+echo Starting image organizer...
 
 rem ---- find Python: local venv first, then py launcher, then python
 set "PY="
@@ -45,8 +55,9 @@ if not defined PY (
     exit /b 1
 )
 
-rem ---- check the packages, offer to install them
-%PY% -c "import open_clip, torch, PIL, numpy, openpyxl, imagehash" >nul 2>&1
+rem ---- check package presence without importing heavyweight ML libraries
+rem      (importing torch/open_clip here can make a double-click look frozen)
+%PY% -c "import importlib.util,sys; sys.exit(0 if all(importlib.util.find_spec(m) for m in ('open_clip','torch','PIL','numpy','openpyxl','imagehash')) else 1)" >nul 2>&1
 if errorlevel 1 (
     echo Required packages are missing: open_clip_torch torch pillow numpy openpyxl imagehash
     echo This is a one-time download of several hundred MB.
@@ -66,12 +77,13 @@ if errorlevel 1 (
 )
 
 rem ---- run
-%PY% "%SCRIPT%" %*
+%PY% -u "%SCRIPT%" %*
 set "RC=%ERRORLEVEL%"
 
-rem Guided menu has its own prompts; when started with arguments keep the window open here
-if not "%~1"=="" (
+rem Keep startup/runtime errors visible when launched by double-click.
+if not "%RC%"=="0" (
     echo.
+    echo Image organizer exited with code %RC%.
     pause
 )
 exit /b %RC%

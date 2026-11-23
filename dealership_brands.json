@@ -1,0 +1,80 @@
+{
+  "name": "Dealership brands",
+  "categories": [
+    {
+      "name": "Bajaj",
+      "keywords": [],
+      "descriptions": [
+        "a Bajaj logo",
+        "the word Bajaj on a signboard or banner",
+        "a Bajaj auto rickshaw, a three-wheeler",
+        "a Bajaj Maxima cargo three-wheeler",
+        "a Bajaj GoGo electric three-wheeler",
+        "a Bajaj three-wheeler showroom"
+      ]
+    },
+    {
+      "name": "Royal Enfield",
+      "keywords": [],
+      "descriptions": [
+        "a Royal Enfield logo",
+        "the words Royal Enfield on a signboard or banner",
+        "a Royal Enfield Bullet motorcycle",
+        "a Royal Enfield Classic 350 cruiser motorcycle",
+        "a Royal Enfield Himalayan adventure motorcycle",
+        "a Royal Enfield motorcycle showroom"
+      ]
+    },
+    {
+      "name": "Tata",
+      "keywords": [],
+      "descriptions": [
+        "a Tata Motors logo",
+        "the word Tata on a signboard or banner",
+        "a Tata Ace small commercial vehicle mini truck",
+        "a Tata Intra pickup truck",
+        "a Tata heavy commercial truck",
+        "a Tata commercial vehicle showroom"
+      ]
+    }
+  ],
+  "other_descriptions": [
+    "a person or a group of people",
+    "a building or a street",
+    "a screenshot, a document or a page of text",
+    "a poster, banner or advertisement with text",
+    "a logo of some other company",
+    "a landscape, a road or the sky",
+    "a plain background, a pattern or some other object",
+    "a Honda, Hero, TVS or Suzuki motorcycle or scooter",
+    "a Mahindra, Ashok Leyland, Eicher or Force commercial vehicle",
+    "a passenger car such as a Maruti, Hyundai or Toyota",
+    "a bus or a train"
+  ],
+  "include_subfolders": true,
+  "unsorted_name": "Unsorted",
+  "prompt_template": "a photo of {}",
+  "category_weight": 6,
+  "other_weight": 8,
+  "thresholds": {
+    "min_score": 0.5,
+    "review_below": 0.75,
+    "min_margin": 0.25,
+    "unsorted_floor": 0.2
+  },
+  "filters": {
+    "min_width": 0,
+    "min_height": 0
+  },
+  "duplicates": {
+    "enabled": true,
+    "threshold": 6,
+    "hash_size": 8,
+    "copies": "inside",
+    "copies_folder": "copies"
+  },
+  "model": {
+    "name": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k"
+  }
+}

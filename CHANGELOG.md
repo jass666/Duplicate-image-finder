@@ -10,6 +10,8 @@ All notable changes to the Duplicate image finder (formerly phash_dedupe) and th
 - Classification is safe by default: no files are copied or moved unless `--apply` is supplied. With `--apply`, classified images are copied into category folders; source images remain unchanged.
 - Trained the initial showroom model from `Showroom Media (For everyone)`: 254 images across `Bajaj 3 Wheelers` (88), `Royal Enfield` (100) and `Tata Trucks` (66), with no unreadable images. The preliminary held-out validation was 48/50 (96%).
 - Documented the folder-trained workflow and commands in `README.md`.
+- Updated `run_folder_trainer.bat` so double-clicking opens a menu for training the showroom dataset or classifying a new folder; command-line `train` and `classify` usage remains available.
+- Fixed the inference-time PyTorch scalar conversion warning in `image_organizer.py`.
 - Updated `run_image_organizer.bat` to anchor itself to its own folder, show startup status, avoid heavyweight ML imports during the dependency check and keep runtime errors visible when double-clicked.
 - Files Changed: `train_from_folders.py`, `run_folder_trainer.bat`, `run_image_organizer.bat`, `README.md`, `CHANGELOG.md`.
 

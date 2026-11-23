@@ -345,7 +345,8 @@ class Classifier:
         with torch.no_grad():
             t = self.model.encode_text(tokenizer([tpl.replace("{}", d) for d in self.labels]).to(self.device))
             self.text = t / t.norm(dim=-1, keepdim=True)
-        self.scale = float(self.model.logit_scale.exp()) if hasattr(self.model, "logit_scale") else 100.0
+        # This is inference-only; detach before converting the learned scalar to a Python float.
+        self.scale = self.model.logit_scale.exp().detach().item() if hasattr(self.model, "logit_scale") else 100.0
 
     def probs(self, pil_images):
         torch = self.torch
